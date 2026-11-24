@@ -2,26 +2,39 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Jasco Liquor & Wine | Jackson, MS</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Jasco Liquor &amp; Wine | Jackson, MS</title>
 <meta name="description" content="Liquor and wine store at 2014 Terry Rd in Jackson, Mississippi. Open Monday to Saturday, 10 AM to 10 PM. Call (601) 346-0360.">
 <link rel="canonical" href="https://jascoliquor.com/">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://jascoliquor.com/">
-<meta property="og:title" content="Jasco Liquor & Wine | Jackson, MS">
+<meta property="og:title" content="Jasco Liquor &amp; Wine | Jackson, MS">
 <meta property="og:description" content="Liquor and wine on Terry Road in Jackson, Mississippi. Open Monday to Saturday, 10 AM to 10 PM.">
-<meta name="theme-color" content="#5a2a2c">
+<meta property="og:image" content="https://jascoliquor.com/images/share.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Jasco Liquor &amp; Wine logo beside a bottle of whiskey">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#f2f0ef">
 <link rel="icon" href="brand/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="brand/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,400..900&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap">
 <link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="sale.css">
+<script src="sale.js"></script>
+<script src="sale-view.js"></script>
+<script src="hours.js" defer></script>
+<script src="bottle.js" defer></script>
+<script src="app.js" defer></script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "LiquorStore",
   "name": "Jasco Liquor & Wine",
   "url": "https://jascoliquor.com/",
+  "image": "https://jascoliquor.com/images/share.jpg",
   "sameAs": ["https://www.instagram.com/jascowholesale/"],
   "telephone": "+1-601-346-0360",
   "address": {
@@ -44,51 +57,112 @@
 <body>
 <a class="skip" href="#main">Skip to content</a>
 
+<header class="bar" id="bar">
+  <a class="bar-mark" href="#top" aria-label="Back to top"><img src="brand/wordmark-maroon.svg" width="600" height="179" alt=""></a>
+  <nav class="bar-nav" aria-label="Main">
+    <a href="deals/">Deals</a>
+    <a href="#shelves">Shelves</a>
+    <a href="#store">Store</a>
+    <a href="#visit">Visit</a>
+  </nav>
+  <p class="status" data-status>Mon to Sat, 10 AM to 10 PM</p>
+</header>
+
 <main id="main">
-  <section class="hero">
-    <div class="wrap hero-grid">
-      <div class="hero-copy">
-        <h1 class="sign"><img src="brand/a-sign.svg" width="720" height="289" alt="Jasco Liquor & Wine"></h1>
-        <p class="status" id="status">Open Monday to Saturday, 10 AM to 10 PM</p>
-        <p class="lede">Liquor and wine on Terry Road in Jackson, Mississippi.</p>
-        <div class="actions">
-          <a class="btn btn-main" href="https://www.google.com/maps/dir/?api=1&destination=Jasco+Liquor+%26+Wine,+2014+Terry+Rd,+Jackson,+MS+39204">Get directions</a>
-          <a class="btn" href="tel:+16013460360">Call (601) 346-0360</a>
-          <a class="btn" href="https://www.doordash.com/store/jasco-liquor-and-wine-25647772/">Order on DoorDash</a>
+  <div class="scene" id="scene">
+  <div class="stage" aria-hidden="true"><div class="set"><svg class="tail" id="tail" focusable="false"></svg><canvas id="stage"></canvas></div></div>
+
+  <section class="hero wrap" id="top">
+    <h1 class="mark"><img src="brand/wordmark-maroon.svg" width="600" height="179" alt="Jasco Liquor &amp; Wine"></h1>
+    <p class="sale-title sale-only" id="sale-name"></p>
+    <p class="lede sale-only" id="sale-short"></p>
+    <p class="lede no-sale-only">Liquor and wine on Terry&nbsp;Road in&nbsp;Jackson, Mississippi.</p>
+    <div class="actions" id="hero-actions">
+      <a class="btn sale-only" href="deals/">See the deals</a>
+      <a class="btn no-sale-only" href="https://www.google.com/maps/dir/?api=1&amp;destination=Jasco+Liquor+%26+Wine,+2014+Terry+Rd,+Jackson,+MS+39204">Get directions</a>
+      <a class="text-link sale-only" href="https://www.google.com/maps/dir/?api=1&amp;destination=Jasco+Liquor+%26+Wine,+2014+Terry+Rd,+Jackson,+MS+39204">Directions</a>
+      <a class="text-link" href="tel:+16013460360">Call<span class="num">&nbsp;(601) 346-0360</span></a>
+      <a class="text-link" href="https://www.doordash.com/store/jasco-liquor-and-wine-25647772/">Order on DoorDash</a>
+    </div>
+  </section>
+
+  <section class="lineup" id="shelves" aria-labelledby="shelves-title">
+    <i class="stop" id="whiskey"></i><i class="stop" id="cognac"></i><i class="stop" id="tequila"></i>
+    <i class="stop" id="vodka"></i><i class="stop" id="gin"></i><i class="stop" id="wine"></i>
+    <div class="panel">
+      <div class="wrap panel-grid">
+        <h2 id="shelves-title">On the shelves</h2>
+        <ul class="kinds">
+          <li class="kind" data-shelf="whiskey"><h3>Whiskey</h3><p>Grain, water, yeast, and years in a barrel.</p></li>
+          <li class="kind" data-shelf="cognac"><h3>Cognac</h3><p>Brandy from one corner of France, distilled twice in copper.</p></li>
+          <li class="kind" data-shelf="tequila"><h3>Tequila</h3><p>Blue agave from Mexico. Blanco is bottled young. Reposado and añejo rest in oak first.</p></li>
+          <li class="kind" data-shelf="vodka"><h3>Vodka</h3><p>Distilled clean. Keep a bottle in the freezer.</p></li>
+          <li class="kind" data-shelf="gin"><h3>Gin</h3><p>Juniper first. The rest of the botanicals are up to the distiller.</p></li>
+          <li class="kind" data-shelf="wine"><h3>Wine</h3><p>By the bottle, or by the big jugs up front.</p></li>
+        </ul>
+        <nav class="index" aria-label="Shelves">
+          <a href="#whiskey">Whiskey</a>
+          <a href="#cognac">Cognac</a>
+          <a href="#tequila">Tequila</a>
+          <a href="#vodka">Vodka</a>
+          <a href="#gin">Gin</a>
+          <a href="#wine">Wine</a>
+        </nav>
+      </div>
+    </div>
+  </section>
+
+  </div>
+
+  <section class="store" id="store" aria-labelledby="store-title">
+    <div class="wrap store-grid">
+      <div class="store-copy">
+        <h2 id="store-title">Inside the store</h2>
+        <p>Looking for a certain bottle? Call <a class="nowrap" href="tel:+16013460360">(601) 346-0360</a> and we’ll check the shelf.</p>
+      </div>
+      <figure>
+        <img class="crop-mid" src="images/interior1.webp" width="765" height="1020" loading="lazy" alt="Shelves of liquor along the back and side walls of the store, with stacked displays in the middle">
+        <figcaption>Displays in the middle, shelves along the walls</figcaption>
+      </figure>
+      <figure>
+        <img src="images/interior2.webp" width="765" height="1020" loading="lazy" alt="Jugs of wine up front, with the counter and liquor shelves behind them and a cooler to the right">
+        <figcaption>Jugs of wine up front, the counter behind</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="visit" id="visit" aria-labelledby="visit-title">
+    <div class="wrap">
+      <div class="visit-grid">
+        <div>
+          <h2 id="visit-title">Visit</h2>
+          <address>2014 Terry Rd<br>Jackson, MS 39204</address>
+          <div class="actions">
+            <a class="btn" href="https://www.google.com/maps/dir/?api=1&amp;destination=Jasco+Liquor+%26+Wine,+2014+Terry+Rd,+Jackson,+MS+39204">Google Maps</a>
+            <a class="text-link" href="https://maps.apple.com/?daddr=2014+Terry+Rd,+Jackson,+MS+39204">Apple Maps</a>
+            <button class="text-link" type="button" id="copy" hidden>Copy address</button>
+          </div>
+          <ul class="links">
+            <li><a href="tel:+16013460360">(601) 346-0360</a></li>
+            <li><a href="https://www.doordash.com/store/jasco-liquor-and-wine-25647772/">Order on DoorDash</a></li>
+            <li><a href="https://www.instagram.com/jascowholesale/">Instagram: @jascowholesale</a></li>
+            <li><a href="jasco.vcf" download>Save to your contacts</a></li>
+          </ul>
         </div>
-      </div>
-      <img class="hero-photo" src="images/interior1.webp" width="765" height="1020" alt="Shelves of liquor along the back and side walls of the store, with stacked displays in the middle">
-    </div>
-  </section>
-
-  <section class="shelves">
-    <div class="wrap shelves-grid">
-      <div class="shelves-copy">
-      <h2>On the shelves</h2>
-      <ul class="tags">
-        <li>Whiskey</li><li>Cognac</li><li>Tequila</li><li>Vodka</li><li>Gin</li><li>Wine</li>
-      </ul>
-      <p>Looking for a certain bottle? Call and we'll check the shelf.</p>
-      </div>
-      <img class="shelves-photo" src="images/interior2.webp" width="765" height="1020" alt="Jugs of wine up front, with the counter and liquor shelves behind them and a cooler to the right" loading="lazy">
-    </div>
-  </section>
-
-  <section class="visit">
-    <div class="wrap visit-grid">
-      <div>
-        <h2>Visit</h2>
-        <address>2014 Terry Rd<br>Jackson, MS 39204</address>
-        <p><a href="tel:+16013460360">(601) 346-0360</a></p>
-        <p><a href="https://www.instagram.com/jascowholesale/">Instagram: @jascowholesale</a></p>
-      </div>
-      <div>
-        <h2>Hours</h2>
-        <dl class="hours">
-          <div><dt>Monday to Saturday</dt><dd>10 AM – 10 PM</dd></div>
-          <div><dt>Sunday</dt><dd>Closed</dd></div>
-          <div><dt>Christmas Day</dt><dd>Closed</dd></div>
-        </dl>
+        <div>
+          <h2>Hours</h2>
+          <p class="when-now" data-status>Open Monday to Saturday, 10 AM to 10 PM</p>
+          <div class="day" id="day" hidden>
+            <div class="day-track"><i class="day-open"></i><i class="day-now"></i></div>
+            <div class="day-scale" aria-hidden="true"><span style="left:41.667%">10 AM</span><span style="left:91.667%">10 PM</span></div>
+          </div>
+          <dl class="hours">
+            <div data-days="1 2 3 4 5 6"><dt>Monday to Saturday</dt><dd>10 AM – 10 PM</dd></div>
+            <div class="thanksgiving-only"><dt>Thanksgiving Day</dt><dd>10 AM – 10 PM</dd></div>
+            <div data-days="0"><dt>Sunday</dt><dd>Closed</dd></div>
+            <div data-christmas><dt>Christmas Day</dt><dd>Closed</dd></div>
+          </dl>
+        </div>
       </div>
     </div>
   </section>
@@ -96,25 +170,17 @@
 
 <footer>
   <div class="wrap">
-    <img src="brand/wordmark-yellow.svg" width="600" height="179" alt="Jasco Liquor & Wine">
+    <img class="mark" src="brand/wordmark-maroon.svg" width="600" height="179" alt="Jasco Liquor &amp; Wine">
     <p>You must be 21 or older to buy alcohol. Please bring a valid ID and drink responsibly.</p>
   </div>
 </footer>
 
-<script>
-  // Store time is always Jackson time, wherever the visitor is.
-  (function () {
-    var parts = {};
-    new Intl.DateTimeFormat("en-US", {
-      timeZone: "America/Chicago", weekday: "short", hour: "numeric", hourCycle: "h23", month: "numeric", day: "numeric"
-    }).formatToParts(new Date()).forEach(function (p) { parts[p.type] = p.value; });
-    var hour = Number(parts.hour);
-    var closedDay = parts.weekday === "Sun" || (parts.month === "12" && parts.day === "25");
-    var open = !closedDay && hour >= 10 && hour < 22;
-    var el = document.getElementById("status");
-    el.textContent = open ? "Open now until 10 PM" : "Closed now. Open Monday to Saturday, 10 AM to 10 PM";
-    el.classList.toggle("is-open", open);
-  })();
-</script>
+<nav class="dock" id="dock" aria-label="Quick actions" inert>
+  <a href="deals/">Deals</a>
+  <a href="https://www.google.com/maps/dir/?api=1&amp;destination=Jasco+Liquor+%26+Wine,+2014+Terry+Rd,+Jackson,+MS+39204">Directions</a>
+  <a href="tel:+16013460360">Call</a>
+  <a href="https://www.doordash.com/store/jasco-liquor-and-wine-25647772/">DoorDash</a>
+</nav>
+<p class="sr" id="say" role="status"></p>
 </body>
 </html>

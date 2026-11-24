@@ -94,14 +94,15 @@ def tag():
 def icon():
     d = GLYPHS["J"][1]
     return (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="Jasco">'
-            f'<rect width="128" height="128" fill="{YELLOW}"/>'
-            f'<path transform="translate(24 19) scale(.9)" d="{d}" fill="none" stroke="{INK}" stroke-width="26"/></svg>\n')
+            f'<rect width="128" height="128" fill="{MAROON}"/>'
+            f'<path transform="translate(24 19) scale(.9)" d="{d}" fill="none" stroke="#fff" stroke-width="26"/></svg>\n')
 
 
 FILES = {
     "a-sign.svg": sign(),
     "wordmark-black.svg": wordmark(INK),
     "wordmark-yellow.svg": wordmark(YELLOW),
+    "wordmark-maroon.svg": wordmark(MAROON),
     "icon.svg": icon(),
 }
 UNUSED_FILES = {"b-bottle.svg": sign(bottle=True), "c-tag.svg": tag()}
