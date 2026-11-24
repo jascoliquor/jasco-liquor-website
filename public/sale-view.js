@@ -22,27 +22,28 @@
     if (item.qty) { line.appendChild(el("span", "deal-qty", item.qty + " for")); line.append(" "); }
     line.appendChild(el("b", "deal-price", "$" + item.price));
     cost.appendChild(line);
-    if (item.tax) { cost.append(" "); cost.appendChild(el("span", "deal-tax", "No tax")); }
+    if (item.tax) { cost.append(" "); cost.appendChild(el("span", "deal-tax", "Tax included")); }
     li.append(what, " ", cost);
     return li;
   }
 
-  /* The same deal on /deals: bottle picture, name, big price. */
+  /* The same deal on /deals, as a flyer cell: big price, name, size, yellow tab, bottle picture. */
   function card(item) {
-    var li = el("li", "card"), text = el("div", "card-text"), cost = el("p", "card-cost"), price = el("b", "card-price"), p = item.price.split(".");
+    var li = el("li", "card"), text = el("div", "card-text"), cost = el("p", "card-cost"), price = el("b", "card-price"), cents = el("small"), p = item.price.split(".");
     if (item.pic) {
       var img = el("img", "card-pic");
       img.src = "/images/deals/" + item.pic + ".webp";
       img.alt = "";
       li.appendChild(img);
     }
+    if (item.qty) { cost.appendChild(el("span", "card-qty", item.qty + " for")); cost.append(" "); }
+    cents.append(el("span", "sr", "."), p[1] || "00");
+    price.append(el("small", "", "$"), p[0], cents);
+    cost.appendChild(price);
+    text.appendChild(cost);
     text.appendChild(el("h3", "card-name", item.name));
     if (item.size) text.appendChild(el("p", "card-size", item.size));
-    if (item.qty) { cost.appendChild(el("span", "card-qty", item.qty + " for")); cost.append(" "); }
-    price.append(el("small", "", "$"), p[0], el("small", "", "." + (p[1] || "00")));
-    cost.appendChild(price);
-    if (item.tax) { cost.append(" "); cost.appendChild(el("span", "card-tax", "No tax")); }
-    text.appendChild(cost);
+    if (item.tax) text.appendChild(el("p", "card-tax", "Tax included"));
     li.appendChild(text);
     return li;
   }

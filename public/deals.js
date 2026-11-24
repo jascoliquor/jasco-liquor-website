@@ -5,12 +5,11 @@
     $("#ended").hidden = false;
     return;
   }
-  $("meta[name=theme-color]").content = getComputedStyle(document.documentElement).getPropertyValue("--bg").trim();
+  $("meta[name=theme-color]").content = getComputedStyle(document.body).getPropertyValue("--bg").trim();
   document.title = sale.name + " | Jasco Liquor & Wine";
   $("#sale-name").textContent = sale.name;
   $("#sale-until").textContent = sale.until;
   $("#sale-hours").textContent = sale.hours;
-  S.tail($("#tail"));
   sale.groups.forEach(function (g) {
     var sec = S.el("section", "group"), ul = S.el("ul");
     sec.style.setProperty("--n", g.items.length);

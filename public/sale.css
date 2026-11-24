@@ -44,60 +44,56 @@ html:not(.theme-thanksgiving) .tail { display: none; }
 .deal-line { display: inline-flex; align-items: baseline; gap: 7px; white-space: nowrap; }
 .deal-qty { font-weight: 650; font-size: 1rem; }
 .deal-price { font-weight: 800; font-stretch: 80%; font-size: 1.8rem; letter-spacing: -.02em; font-variant-numeric: tabular-nums; color: var(--maroon); }
-/* "No tax" badge */
+/* "Tax included" badge */
 .deal-tax, .card-tax { display: block; width: fit-content; background: var(--f-mid, var(--maroon)); color: #fff; font-weight: 800; font-stretch: 88%; line-height: 1; letter-spacing: .03em; text-transform: uppercase; white-space: nowrap; }
 .deal-tax { margin: 5px 0 0 auto; padding: 4px 7px; font-size: .875rem; }
 
 /* Deals page */
+/* A printed flyer: white paper, black rules, red prices, yellow tabs. */
+.deals-page { --bg: #fff; --ink: #1a1718; --soft: #55504f; --line: #ddd; --sale-soft: #3d3839; --red: #bd1a2d; --yellow: #ffd500; --rule: 4px; }
 .deals-page main { padding-top: calc(var(--bar) + env(safe-area-inset-top, 0px)); }
 .bar-nav a[aria-current] { color: var(--ink); font-weight: 600; }
-.deals-hero { display: grid; gap: 14px; padding-top: 22px; overflow: hidden; }
-.deals-words { display: grid; gap: 8px; }
-.deals-words .sale-title { margin-bottom: 4px; }
-.deals-until { font-weight: 650; font-size: 1.1875rem; line-height: 1.3; text-wrap: balance; }
-.deals-hero .tail { display: block; width: 180px; margin-inline: auto; }
-/* The flyer. A section's width follows its number of bottles (--n), so small ones share a line. */
-.groups { display: flex; flex-wrap: wrap; gap: 20px; }
-.group { flex: 1 1 100%; min-width: 0; background: var(--row); }
-.group h2 { padding: 11px 18px; background: var(--maroon); color: #fff6e3; font-size: 1.3rem; font-weight: 750; font-stretch: 88%; letter-spacing: -.01em; }
-.group ul { display: flex; flex-wrap: wrap; gap: 1px; background: #ead5ab; }
-.card { flex: 1 1 250px; min-width: 0; display: flex; align-items: center; justify-content: center; gap: 18px; padding: 18px; background: var(--row); }
-.card-pic { flex: none; width: 112px; height: 182px; object-fit: contain; }
-.card-text { flex: 0 1 190px; min-width: 0; }
-.card-name { font-weight: 700; font-size: 1.1875rem; line-height: 1.15; letter-spacing: -.015em; }
-.card-size { margin-top: 2px; color: var(--sale-soft); }
-.card-cost { margin-top: 10px; line-height: 1; }
-.card-qty { display: block; margin-bottom: 2px; font-weight: 750; font-size: 1.25rem; }
-.card-price { display: flex; align-items: flex-start; font-weight: 850; font-stretch: 76%; font-size: 3.5rem; line-height: .9; letter-spacing: -.03em; font-variant-numeric: tabular-nums; color: var(--maroon); }
-.card-price small { font-size: .5em; line-height: 1.1; letter-spacing: -.01em; }
-.card-tax { margin-top: 8px; padding: 7px 12px; font-size: 1.1875rem; }
-.fine { padding-block: 22px 64px; font-weight: 600; }
+.flyer { padding-block: 20px 56px; }
+.flyer-bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 40px; padding: 14px 20px; background: var(--ink); color: #fff; }
+.flyer-bar h1 { color: var(--yellow); font-size: clamp(min(2.2rem, 8.8vw), 3.4vw, 2.7rem); font-weight: 900; font-stretch: 96%; line-height: 1; letter-spacing: -.03em; text-transform: uppercase; text-wrap: balance; }
+.flyer-bar p { font-weight: 600; line-height: 1.3; text-wrap: balance; }
+.flyer-bar .flyer-hours { font-size: 1.25rem; font-weight: 800; letter-spacing: -.01em; }
+/* The rules are the black behind the cells, showing through the gaps.
+   A section's width follows its number of bottles (--n), so small ones share a line. */
+.groups { display: flex; flex-wrap: wrap; gap: var(--rule); padding-bottom: var(--rule); background: var(--ink); }
+.group { flex: 1 1 100%; min-width: 0; display: flex; flex-direction: column; background: #fff; }
+.group h2 { align-self: flex-start; margin: 12px 0 0; padding: 7px 12px; background: var(--red); color: var(--yellow); font-size: 1.25rem; font-weight: 900; letter-spacing: -.01em; line-height: 1; text-transform: uppercase; }
+.group ul { flex: 1; display: flex; flex-wrap: wrap; gap: var(--rule); margin-top: 8px; background: var(--ink); }
+.card { flex: 1 1 100%; min-width: 0; container-type: inline-size; position: relative; background: #fff; }
+.card-pic { position: absolute; right: 12px; bottom: 14px; width: min(34cqi, 130px); height: 190px; object-fit: contain; object-position: 50% 100%; }
+/* Narrow cells: a "2 for" price is long, so its bottle stays under it. Wide cells: the bottle stays near its price. */
+@container (max-width: 400px) { .card:has(.card-qty) .card-pic { height: 150px; } }
+@container (min-width: 460px) { .card-pic { right: auto; left: 320px; } }
+/* The price sits in front of the bottle, as on the flyer. */
+.card-text { position: relative; min-height: 236px; padding: 14px 0 22px; }
+.card-cost { display: flex; align-items: center; gap: 8px; padding-left: 14px; line-height: 1; }
+.card-qty { width: min-content; font-weight: 900; font-size: 1.375rem; line-height: .95; text-align: center; text-transform: uppercase; }
+.card-price { display: flex; align-items: flex-start; position: relative; font-weight: 900; font-stretch: 88%; font-size: clamp(4.4rem, 27cqi, 6rem); line-height: .86; letter-spacing: -.045em; color: var(--red); }
+.card-price small { font-size: .52em; line-height: .95; letter-spacing: -.03em; }
+.card-price small:first-child { margin-right: .04em; }
+.card-price small:last-child { margin-left: .08em; }
+.card-name, .card-size { padding: 0 calc(min(34cqi, 130px) + 16px) 0 14px; }
+.card-name { margin-top: 14px; font-weight: 800; font-size: 1.25rem; line-height: 1.12; letter-spacing: -.015em; }
+.card-size { margin-top: 3px; color: var(--sale-soft); font-size: 1.0625rem; }
+.card-tax { margin-top: 8px; padding: 7px 22px 7px 14px; border-top-right-radius: 14px; background: var(--yellow); color: var(--ink); font-size: 1.125rem; letter-spacing: 0; }
+@container (max-width: 270px) { .card-tax { padding-right: 12px; font-size: 1rem; } }
+.fine { padding: 12px 20px; background: var(--ink); color: #fff; font-weight: 700; text-align: center; text-wrap: balance; }
 .ended { display: grid; gap: 24px; align-content: center; min-height: 60svh; padding-block: 64px; }
 .ended .sale-title { font-size: clamp(2.8rem, 6vw, 5rem); max-width: 14ch; }
 .ended p { max-width: 42ch; font-size: 1.1875rem; }
 .ended a { color: var(--maroon); }
 
-@media (min-width: 800px) {
-  .deals-hero { grid-template-columns: 1fr auto; align-items: end; gap: 40px; padding-top: 44px; }
-  .deals-words { padding-bottom: 32px; }
-  .deals-words .sale-title { font-size: clamp(3.4rem, 6.6vw, 6rem); }
-  .deals-hero .tail { width: clamp(240px, 27vw, 360px); }
-}
-/* Phones: two bottles across. An odd one out takes the whole line, side by side. */
-@media (max-width: 639px) {
-  .deals-words p { text-wrap: balance; }
-  .group ul { display: grid; grid-template-columns: 1fr 1fr; }
-  .card { padding: 16px 12px; }
-  .card:nth-child(odd):last-child { grid-column: 1 / -1; }
-  .card:not(:nth-child(odd):last-child) { flex-direction: column; justify-content: flex-start; gap: 12px; }
-  .card:not(:nth-child(odd):last-child) .card-text { flex: none; width: 100%; text-align: center; }
-  .card:not(:nth-child(odd):last-child) .card-price { justify-content: center; }
-  .card:not(:nth-child(odd):last-child) .card-tax { margin-inline: auto; }
-  .card-price { font-size: 3.2rem; }
-  .card-name { font-size: 1.125rem; }
+@media (min-width: 640px) {
+  .card { flex-basis: calc(50% - var(--rule)); }
 }
 @media (min-width: 1100px) {
-  .group { flex-basis: calc(var(--n) * 22%); }
+  .group { flex: var(--n) 1 calc(var(--n) * 22%); }
+  .card { flex: 1 1 0; }
 }
 /* Upright phones and tablets: the sale words need more of the screen than the normal ones. */
 @media (max-width: 1100px) and (max-aspect-ratio: 1/1) {
@@ -112,4 +108,4 @@ html:not(.theme-thanksgiving) .tail { display: none; }
 @media (max-width: 479px) {
   .sale .hero .actions a[href*="doordash"] { display: none; }
 }
-@media print { .tail { display: none !important; } .group { break-inside: avoid; } }
+@media print { .tail { display: none !important; } .card { break-inside: avoid; } .flyer * { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
