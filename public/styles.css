@@ -133,6 +133,11 @@ address, .when-now { font-style: normal; font-size: clamp(1.6rem, 2.7vw, 2.4rem)
 .hours { width: 100%; font-variant-numeric: tabular-nums; color: var(--soft); }
 .hours div { display: flex; justify-content: space-between; gap: 20px; padding-block: 11px; border-bottom: 1px solid var(--line); }
 .hours .is-today { color: var(--ink); font-weight: 600; }
+/* The photos are 2:1 and 4:5, so columns of 5 and 2 give them the same height. */
+.outside { display: grid; gap: 36px; margin-top: clamp(48px, 6vw, 88px); }
+.outside figure { min-width: 0; }
+.outside img { width: 100%; }
+.outside figure:first-child img { aspect-ratio: 4 / 3; object-fit: cover; object-position: 48% 50%; }
 
 footer .wrap { display: flex; flex-wrap: wrap; gap: 24px 48px; align-items: center; justify-content: space-between; padding-block: 44px calc(44px + env(safe-area-inset-bottom, 0px)); }
 footer .mark { width: 120px; }
@@ -156,6 +161,8 @@ footer p { max-width: 46ch; font-size: .9375rem; color: var(--soft); }
   .store-copy { grid-column: 1 / -1; }
   .store-copy p { max-width: none; }
   .visit-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(40px, 8vw, 130px); }
+  .outside { grid-template-columns: minmax(0, 5fr) minmax(0, 2fr); gap: clamp(16px, 2vw, 28px); }
+  .outside figure:first-child img { aspect-ratio: auto; }
 }
 @media (min-width: 1000px) {
   .store-grid { grid-template-columns: minmax(200px, 1fr) minmax(0, 400px) minmax(0, 400px); }
