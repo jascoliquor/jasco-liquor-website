@@ -27,7 +27,7 @@ window.JASCO_SALE = {
       { name: "DeLeón Reposado", pic: "deleon", size: "375ml", qty: 2, price: "30.00", tax: true, shelf: "tequila" }
     ] },
     { title: "Vodka", items: [
-      { name: "Grey Goose", pic: "grey-goose", size: "375ml", price: "19.99", shelf: "vodka" },
+      { name: "Grey Goose", pic: "grey-goose", size: "375ml", qty: 2, price: "19.99", shelf: "vodka" },
       { name: "Wheatley Vodka", pic: "wheatley", size: "1.75L", qty: 2, price: "30.00", tax: true, shelf: "vodka" },
       { name: "Taaka Vodka", pic: "taaka", size: "750ml", qty: 3, price: "18.00", tax: true, shelf: "vodka" }
     ] },
