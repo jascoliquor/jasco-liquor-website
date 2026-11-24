@@ -22,8 +22,28 @@
     if (item.qty) { line.appendChild(el("span", "deal-qty", item.qty + " for")); line.append(" "); }
     line.appendChild(el("b", "deal-price", "$" + item.price));
     cost.appendChild(line);
-    if (item.tax) { cost.append(" "); cost.appendChild(el("span", "deal-tax", "tax included")); }
+    if (item.tax) { cost.append(" "); cost.appendChild(el("span", "deal-tax", "No tax")); }
     li.append(what, " ", cost);
+    return li;
+  }
+
+  /* The same deal on /deals: bottle picture, name, big price. */
+  function card(item) {
+    var li = el("li", "card"), text = el("div", "card-text"), cost = el("p", "card-cost"), price = el("b", "card-price"), p = item.price.split(".");
+    if (item.pic) {
+      var img = el("img", "card-pic");
+      img.src = "/images/deals/" + item.pic + ".webp";
+      img.alt = "";
+      li.appendChild(img);
+    }
+    text.appendChild(el("h3", "card-name", item.name));
+    if (item.size) text.appendChild(el("p", "card-size", item.size));
+    if (item.qty) { cost.appendChild(el("span", "card-qty", item.qty + " for")); cost.append(" "); }
+    price.append(el("small", "", "$"), p[0], el("small", "", "." + (p[1] || "00")));
+    cost.appendChild(price);
+    if (item.tax) { cost.append(" "); cost.appendChild(el("span", "card-tax", "No tax")); }
+    text.appendChild(cost);
+    li.appendChild(text);
     return li;
   }
 
@@ -51,5 +71,5 @@
       }
     });
   }
-  window.JascoSale = { live: live, sale: sale, row: row, tail: tail, el: el };
+  window.JascoSale = { live: live, sale: sale, row: row, card: card, tail: tail, el: el };
 })();

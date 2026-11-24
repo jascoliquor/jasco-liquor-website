@@ -39,49 +39,65 @@ html:not(.theme-thanksgiving) .tail { display: none; }
 .deal-what { min-width: 0; line-height: 1.2; }
 .deal-name { font-weight: 650; font-size: 1.1rem; letter-spacing: -.01em; }
 .deal-size { color: var(--sale-soft); font-size: .9375rem; white-space: nowrap; }
-.kind .deal-size, .kind .deal-tax { color: var(--soft); }
+.kind .deal-size { color: var(--soft); }
 .deal-cost { flex: none; text-align: right; line-height: 1; }
 .deal-line { display: inline-flex; align-items: baseline; gap: 7px; white-space: nowrap; }
 .deal-qty { font-weight: 650; font-size: 1rem; }
 .deal-price { font-weight: 800; font-stretch: 80%; font-size: 1.8rem; letter-spacing: -.02em; font-variant-numeric: tabular-nums; color: var(--maroon); }
-.deal-tax { display: block; margin-top: 3px; font-size: .875rem; color: var(--sale-soft); }
+/* "No tax" badge */
+.deal-tax, .card-tax { display: block; width: fit-content; background: var(--f-mid, var(--maroon)); color: #fff; font-weight: 800; font-stretch: 88%; line-height: 1; letter-spacing: .03em; text-transform: uppercase; white-space: nowrap; }
+.deal-tax { margin: 5px 0 0 auto; padding: 4px 7px; font-size: .875rem; }
 
 /* Deals page */
 .deals-page main { padding-top: calc(var(--bar) + env(safe-area-inset-top, 0px)); }
 .bar-nav a[aria-current] { color: var(--ink); font-weight: 600; }
-.deals-hero { display: grid; gap: 20px; padding-top: 32px; overflow: hidden; }
-.deals-words { display: grid; gap: 10px; }
-.deals-words .sale-title { margin-bottom: 6px; }
-.deals-until { font-weight: 650; font-size: 1.1875rem; line-height: 1.3; max-width: 34ch; text-wrap: balance; }
-.deals-hero .tail { display: block; width: min(100%, 380px); margin-inline: auto; }
-.groups { columns: 1; column-gap: 28px; }
-.group { break-inside: avoid; margin-bottom: 28px; background: var(--row); }
-.group h2 { padding: 11px 18px; background: var(--maroon); color: #fff6e3; font-size: 1.25rem; font-weight: 700; letter-spacing: -.01em; }
-.group .deal { padding: 13px 18px; min-height: 72px; }
-.group .deal + .deal { border-top: 1px solid #ead5ab; }
-.group .deal-size { display: block; margin-top: 3px; }
-.group .deal-price { font-size: 2.3rem; }
-.fine { padding-block: 4px 64px; font-weight: 600; }
-.flyer { background: var(--row); }
-.flyer-grid { display: grid; gap: 28px; padding-block: clamp(48px, 7vw, 96px); }
-.flyer-copy { display: grid; gap: 10px; align-content: start; justify-items: start; }
-/* The picture has blank paper at the bottom. */
-.flyer img { width: 100%; max-width: 560px; aspect-ratio: 716 / 836; object-fit: cover; object-position: 50% 0; }
+.deals-hero { display: grid; gap: 14px; padding-top: 22px; overflow: hidden; }
+.deals-words { display: grid; gap: 8px; }
+.deals-words .sale-title { margin-bottom: 4px; }
+.deals-until { font-weight: 650; font-size: 1.1875rem; line-height: 1.3; text-wrap: balance; }
+.deals-hero .tail { display: block; width: 180px; margin-inline: auto; }
+/* The flyer. A section's width follows its number of bottles (--n), so small ones share a line. */
+.groups { display: flex; flex-wrap: wrap; gap: 20px; }
+.group { flex: 1 1 100%; min-width: 0; background: var(--row); }
+.group h2 { padding: 11px 18px; background: var(--maroon); color: #fff6e3; font-size: 1.3rem; font-weight: 750; font-stretch: 88%; letter-spacing: -.01em; }
+.group ul { display: flex; flex-wrap: wrap; gap: 1px; background: #ead5ab; }
+.card { flex: 1 1 250px; min-width: 0; display: flex; align-items: center; justify-content: center; gap: 18px; padding: 18px; background: var(--row); }
+.card-pic { flex: none; width: 112px; height: 182px; object-fit: contain; }
+.card-text { flex: 0 1 190px; min-width: 0; }
+.card-name { font-weight: 700; font-size: 1.1875rem; line-height: 1.15; letter-spacing: -.015em; }
+.card-size { margin-top: 2px; color: var(--sale-soft); }
+.card-cost { margin-top: 10px; line-height: 1; }
+.card-qty { display: block; margin-bottom: 2px; font-weight: 750; font-size: 1.25rem; }
+.card-price { display: flex; align-items: flex-start; font-weight: 850; font-stretch: 76%; font-size: 3.5rem; line-height: .9; letter-spacing: -.03em; font-variant-numeric: tabular-nums; color: var(--maroon); }
+.card-price small { font-size: .5em; line-height: 1.1; letter-spacing: -.01em; }
+.card-tax { margin-top: 8px; padding: 7px 12px; font-size: 1.1875rem; }
+.fine { padding-block: 22px 64px; font-weight: 600; }
 .ended { display: grid; gap: 24px; align-content: center; min-height: 60svh; padding-block: 64px; }
 .ended .sale-title { font-size: clamp(2.8rem, 6vw, 5rem); max-width: 14ch; }
 .ended p { max-width: 42ch; font-size: 1.1875rem; }
 .ended a { color: var(--maroon); }
 
 @media (min-width: 800px) {
-  .deals-hero { grid-template-columns: 1.05fr 1fr; align-items: end; padding-top: 56px; }
-  .deals-words { padding-bottom: 52px; }
-  .deals-hero .tail { width: 100%; max-width: 620px; }
-  .groups { columns: 2; }
-  .flyer-grid { grid-template-columns: 1fr 1.4fr; }
+  .deals-hero { grid-template-columns: 1fr auto; align-items: end; gap: 40px; padding-top: 44px; }
+  .deals-words { padding-bottom: 32px; }
+  .deals-words .sale-title { font-size: clamp(3.4rem, 6.6vw, 6rem); }
+  .deals-hero .tail { width: clamp(240px, 27vw, 360px); }
 }
+/* Phones: two bottles across. An odd one out takes the whole line, side by side. */
 @media (max-width: 639px) {
-  .deals-hero { padding-top: 22px; gap: 14px; }
-  .deals-hero .tail { width: 250px; }
+  .deals-words p { text-wrap: balance; }
+  .group ul { display: grid; grid-template-columns: 1fr 1fr; }
+  .card { padding: 16px 12px; }
+  .card:nth-child(odd):last-child { grid-column: 1 / -1; }
+  .card:not(:nth-child(odd):last-child) { flex-direction: column; justify-content: flex-start; gap: 12px; }
+  .card:not(:nth-child(odd):last-child) .card-text { flex: none; width: 100%; text-align: center; }
+  .card:not(:nth-child(odd):last-child) .card-price { justify-content: center; }
+  .card:not(:nth-child(odd):last-child) .card-tax { margin-inline: auto; }
+  .card-price { font-size: 3.2rem; }
+  .card-name { font-size: 1.125rem; }
+}
+@media (min-width: 1100px) {
+  .group { flex-basis: calc(var(--n) * 22%); }
 }
 /* Upright phones and tablets: the sale words need more of the screen than the normal ones. */
 @media (max-width: 1100px) and (max-aspect-ratio: 1/1) {
@@ -96,4 +112,4 @@ html:not(.theme-thanksgiving) .tail { display: none; }
 @media (max-width: 479px) {
   .sale .hero .actions a[href*="doordash"] { display: none; }
 }
-@media print { .tail, .flyer { display: none !important; } .groups { columns: 2; } }
+@media print { .tail { display: none !important; } .group { break-inside: avoid; } }

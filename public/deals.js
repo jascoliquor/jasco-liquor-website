@@ -13,15 +13,11 @@
   S.tail($("#tail"));
   sale.groups.forEach(function (g) {
     var sec = S.el("section", "group"), ul = S.el("ul");
+    sec.style.setProperty("--n", g.items.length);
     sec.appendChild(S.el("h2", "", g.title));
-    g.items.forEach(function (item) { ul.appendChild(S.row(item)); });
+    g.items.forEach(function (item) { ul.appendChild(S.card(item)); });
     sec.appendChild(ul);
     $("#groups").appendChild(sec);
   });
-  if (sale.flyer) {
-    $("#flyer-link").href = $("#flyer-open").href = $("#flyer-img").src = sale.flyer;
-    $("#flyer-img").alt = sale.name + " flyer. Its prices are listed above.";
-    $("#flyer").hidden = false;
-  }
   $("#live").hidden = false;
 })();
