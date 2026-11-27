@@ -1,0 +1,14 @@
+# Path redirects. Cloudflare reads this file at deploy time and does not serve it.
+# Docs: https://developers.cloudflare.com/workers/static-assets/redirects/
+# Format: /from /to status. www -> jascoliquor.com is a host redirect and lives in the
+# Cloudflare dashboard instead (see CLOUDFLARE.md), because this file only matches paths.
+
+# Browsers and bots ask for these at the root no matter what the HTML says.
+/favicon.ico                       /brand/icon.svg              302
+/apple-touch-icon.png              /brand/apple-touch-icon.png  301
+/apple-touch-icon-precomposed.png  /brand/apple-touch-icon.png  301
+
+# Easy to say out loud or print on a flyer.
+/sale      /deals/  301
+/sales     /deals/  301
+/specials  /deals/  301

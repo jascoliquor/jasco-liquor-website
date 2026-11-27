@@ -5,8 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Jasco Liquor &amp; Wine | Jackson, MS</title>
 <meta name="description" content="Liquor and wine store at 2014 Terry Rd in Jackson, Mississippi. Open Monday to Saturday, 10 AM to 10 PM. Call (601) 346-0360.">
+<meta name="robots" content="index, follow, max-image-preview:large">
 <link rel="canonical" href="https://jascoliquor.com/">
 <meta property="og:type" content="website">
+<meta property="og:site_name" content="Jasco Liquor &amp; Wine">
+<meta property="og:locale" content="en_US">
 <meta property="og:url" content="https://jascoliquor.com/">
 <meta property="og:title" content="Jasco Liquor &amp; Wine | Jackson, MS">
 <meta property="og:description" content="Liquor and wine on Terry Road in Jackson, Mississippi. Open Monday to Saturday, 10 AM to 10 PM.">
@@ -32,8 +35,11 @@
 {
   "@context": "https://schema.org",
   "@type": "LiquorStore",
+  "@id": "https://jascoliquor.com/#store",
   "name": "Jasco Liquor & Wine",
   "url": "https://jascoliquor.com/",
+  "logo": "https://jascoliquor.com/brand/apple-touch-icon.png",
+  "hasMap": "https://www.google.com/maps/search/?api=1&query=Jasco+Liquor+%26+Wine,+2014+Terry+Rd,+Jackson,+MS+39204",
   "image": ["https://jascoliquor.com/images/storefront.webp", "https://jascoliquor.com/images/share.jpg"],
   "sameAs": ["https://www.instagram.com/jascowholesale/", "https://www.facebook.com/jascoWholesale"],
   "telephone": "+1-601-346-0360",
@@ -73,7 +79,7 @@
   <div class="stage" aria-hidden="true"><div class="set"><svg class="tail" id="tail" focusable="false"></svg><canvas id="stage"></canvas></div></div>
 
   <section class="hero wrap" id="top">
-    <h1 class="mark"><img src="brand/wordmark-maroon.svg" width="600" height="179" alt="Jasco Liquor &amp; Wine"></h1>
+    <h1 class="mark"><img src="brand/wordmark-maroon.svg" width="600" height="179" fetchpriority="high" alt="Jasco Liquor &amp; Wine"></h1>
     <p class="sale-title sale-only" id="sale-name"></p>
     <p class="lede sale-only" id="sale-short"></p>
     <p class="lede no-sale-only">Liquor and wine on Terry&nbsp;Road in&nbsp;Jackson, Mississippi.</p>
@@ -155,7 +161,7 @@
           <p class="when-now" data-status>Open Monday to Saturday, 10 AM to 10 PM</p>
           <div class="day" id="day" hidden>
             <div class="day-track"><i class="day-open"></i><i class="day-now"></i></div>
-            <div class="day-scale" aria-hidden="true"><span style="left:41.667%">10 AM</span><span style="left:91.667%">10 PM</span></div>
+            <div class="day-scale" aria-hidden="true"><span class="at-open">10 AM</span><span class="at-close">10 PM</span></div>
           </div>
           <dl class="hours">
             <div data-days="1 2 3 4 5 6"><dt>Monday to Saturday</dt><dd>10 AM – 10 PM</dd></div>

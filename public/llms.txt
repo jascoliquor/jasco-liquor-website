@@ -1,0 +1,18 @@
+# Jasco Liquor & Wine
+
+> Liquor and wine store at 2014 Terry Rd, Jackson, Mississippi 39204. Phone (601) 346-0360. Open Monday to Saturday, 10 AM to 10 PM. Closed Sunday and Christmas Day.
+
+- Sells whiskey, cognac, tequila, vodka, gin and wine, including big jugs of wine.
+- Delivery through DoorDash: https://www.doordash.com/store/jasco-liquor-and-wine-25647772/
+- Customers must be 21 or older and bring a valid ID.
+- Call the store to check whether a certain bottle is in stock.
+
+## Pages
+
+- [Home](https://jascoliquor.com/): hours, address, directions, photos of the store
+- [Deals](https://jascoliquor.com/deals/): the current sale flyer, when one is running. Prices are before tax unless marked "Tax included".
+
+## Elsewhere
+
+- [Instagram @jascowholesale](https://www.instagram.com/jascowholesale/)
+- [Facebook jascoWholesale](https://www.facebook.com/jascoWholesale)

@@ -1,0 +1,20 @@
+// Cloudflare Workers config. The site is static files only: there is no Worker script,
+// so every request is served straight from public/ (free and unlimited on Cloudflare).
+// Deploy command in the Cloudflare dashboard should be just:  npx wrangler deploy
+{
+  // Must match the Worker's name in the Cloudflare dashboard (Workers & Pages > your Worker).
+  // If the build log says the name does not match, change this line, not the dashboard.
+  "name": "jasco-liquor-website",
+  "compatibility_date": "2026-11-20",
+  "assets": {
+    "directory": "./public",
+    // /deals and /deals/index.html both go to /deals/.
+    "html_handling": "auto-trailing-slash",
+    // Unknown paths get public/404.html with a real 404 status.
+    "not_found_handling": "404-page"
+  },
+  // Only jascoliquor.com should serve the site, so search engines see one copy.
+  // This turns off the *.workers.dev address and per-version preview addresses.
+  "workers_dev": false,
+  "preview_urls": false
+}

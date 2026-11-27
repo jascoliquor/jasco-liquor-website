@@ -1,0 +1,25 @@
+# Response headers for every file Cloudflare serves from public/.
+# Cloudflare reads this file at deploy time and does not serve it.
+# Docs: https://developers.cloudflare.com/workers/static-assets/headers/
+#
+# If you add a new outside service (a map embed, a form, an analytics tag), add its
+# domain to the matching part of Content-Security-Policy or the browser will block it.
+# Today the only outside domains are Google Fonts and Cloudflare Web Analytics.
+
+/*
+  Strict-Transport-Security: max-age=63072000; includeSubDomains
+  Content-Security-Policy: default-src 'self'; script-src 'self' https://static.cloudflareinsights.com; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self'; connect-src 'self' https://cloudflareinsights.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=(), browsing-topics=()
+  Cross-Origin-Opener-Policy: same-origin
+
+# Caching. File names are not fingerprinted, so nothing is cached forever.
+# HTML, JS and CSS keep Cloudflare's default (browser checks for a new copy on every visit),
+# so a new sale in sale.js shows up right away. Pictures change rarely, so browsers keep them.
+/images/*
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+
+/brand/*
+  Cache-Control: public, max-age=604800, stale-while-revalidate=2592000

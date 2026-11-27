@@ -1,0 +1,7 @@
+# Search engines and AI answer engines are welcome: people ask them for
+# "liquor store near me", hours and prices. Nothing on this site is private.
+User-agent: *
+Allow: /
+Disallow: /cdn-cgi/
+
+Sitemap: https://jascoliquor.com/sitemap.xml
