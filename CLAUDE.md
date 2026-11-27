@@ -35,14 +35,14 @@ public/
   404.html              shown for any unknown path (real 404 status, noindex)
   styles.css            all base styles (home, bar, footer, dock, hours); .page = plain page like 404
   sale.css              sale theme on home, flyer layout on /deals/, .ended message
-  sale.js               THE CURRENT SALE as data (window.JASCO_SALE). Edit this for each new sale.
-  sale-view.js          reads sale.js in <head>: sets html.sale + theme class, builds deal rows/cards, turkey tail
+  sale.js               THE CURRENT SALE as data (window.JASCO_SALE), or null for none. Edit for each sale.
+  sale-view.js          reads sale.js in <head>: sets html.sale + theme class, builds deal rows/cards
   hours.js              open/closed status in Jackson time (America/Chicago), today's row in the hours table
   bottle.js             WebGL bottle on the home page (window.JascoStage); falls back to no bottle
   app.js                home page behavior: sale prices beside bottles, scroll scenes, copy address, phone dock
   deals.js              fills /deals/ from sale.js
   jasco.vcf             "Save to your contacts" card
-  images/               photos (.webp); share.jpg is the 1200x630 link preview; deals/ holds bottle cutouts
+  images/               photos (.webp); share.jpg is the 1200x630 link preview; deals/ holds a sale's bottle cutouts
   brand/                logo SVGs, icon.svg (favicon), apple-touch-icon.png
   _headers              security headers (CSP, HSTS, ...) and cache times. Read by Cloudflare, not served.
   _redirects            /favicon.ico, /apple-touch-icon.png, /sale, /sales, /specials. Read by Cloudflare, not served.
@@ -52,20 +52,19 @@ public/
   .assetsignore         files never uploaded (.DS_Store)
 ```
 
-`images/thanksgiving-flyer.jpg` is the original paper flyer the 2026 Thanksgiving sale was typed from;
-no page links to it.
-
 ## Running a sale
 
-1. Edit `public/sale.js`: `name`, `theme` (CSS class `theme-<theme>` in sale.css; only
-   `thanksgiving` exists), `ends` (ISO time with Jackson offset: `-06:00` winter, `-05:00` summer),
+1. In `public/sale.js`, replace `null` with the sale (the comment there has an example): `name`,
+   `theme` (optional; CSS class `theme-<theme>` that you add to sale.css; none exist right now), `ends` (ISO time with Jackson offset: `-06:00` winter, `-05:00` summer),
    `until`, `short`, `hours`, and `groups` of items.
 2. Item fields: `name`, `pic` (file in `public/images/deals/<pic>.webp`, bottle cut out on a
    clear background), `size`, `price` as a string like `"32.99"`, `qty: 2` for "2 for",
    `tax: true` for "Tax included", `shelf` = which home-page bottle it sits beside
    (`whiskey`, `cognac`, `tequila`, `vodka`, `gin`, `wine`).
 3. When `ends` passes, the whole site goes back to normal by itself (open pages reload within 20 s)
-   and /deals/ says no sale is posted. Nothing needs to be removed.
+   and /deals/ says no sale is posted. Nothing has to be removed, but once it is over, set
+   `JASCO_SALE` back to `null`, delete that sale's pictures and theme CSS. The 2026 Thanksgiving
+   sale (theme, turkey tail, bottle cutouts, flyer scan) is in git history at commit `da28dd8`.
 4. Bump `lastmod` for /deals/ in `public/sitemap.xml`.
 
 ## Rules to keep (security and SEO)

@@ -6,15 +6,13 @@
   var calm = matchMedia("(prefers-reduced-motion: reduce)");
 
   /* ---- Sale. While one is running, its prices sit beside the matching bottle. ---- */
-  var deals = window.JascoSale, tail = null;
+  var deals = window.JascoSale;
   var bg = getComputedStyle(root).getPropertyValue("--bg").trim();
   if (deals.live) {
     $("meta[name=theme-color]").content = bg;
     $("#sale-name").textContent = deals.sale.name;
     $("#sale-short").textContent = deals.sale.short + " " + deals.sale.hours;
     $("#shelves-title").textContent = "Sale prices, before tax unless marked";
-    tail = $("#tail");
-    deals.tail(tail);
     $$(".kind").forEach(function (li) {
       var ul = deals.el("ul", "picks");
       deals.sale.groups.forEach(function (g) {
@@ -116,12 +114,6 @@
     queued = false;
     target = goal < 0 ? sceneAt((scrollY - pageTop(lineup)) / step) : goal;
     if (calm.matches) target = Math.round(target);
-    // The tail folds up behind the bottle on the way to the shelves.
-    if (tail) {
-      var open = Math.max(0, 1 - Math.max(0, scrollY) / (innerHeight * .7));
-      tail.style.setProperty("--open", open.toFixed(3));
-      tail.style.opacity = Math.min(1, open * 5).toFixed(2);
-    }
     bar.classList.toggle("is-scrolled", scrollY > 8);
     showKind(Math.round(target));
     var up = heroActions.getBoundingClientRect().bottom < 0 && visit.getBoundingClientRect().top > innerHeight * .6;
