@@ -27,6 +27,9 @@ Everything below works on the **Free plan**.
   version stays live, so nothing breaks.
 - [ ] After the deploy finishes, open https://jascoliquor.com/nope (should show the "That page isn't
   here" page) and https://securityheaders.com/?q=jascoliquor.com (should be grade A).
+  Done 2026-11: https://jascoliquor.com gets A+. Testing an `http://` address gives grade **R**,
+  which means "Redirect": the http address sends visitors to https, which is correct. Tick
+  "Follow redirects" on securityheaders.com to grade the page it lands on.
 
 ### 2. www goes to jascoliquor.com (one copy of the site for Google)
 - [ ] Rules > Redirect Rules > Create rule > template **"Redirect from WWW to root"**, or by hand:
